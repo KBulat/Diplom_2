@@ -1,6 +1,6 @@
 import allure
 from helpers.api import OrderApi
-from helpers.data import ErrorMessages, INGREDIENTS_HASH
+from helpers.data import ErrorMessages, INGREDIENTS_HASH, INVALID_INGREDIENT_HASH
 
 @allure.suite("Создание заказа")
 class TestCreateOrder:
@@ -34,7 +34,7 @@ class TestCreateOrder:
 
     @allure.title("Создание заказа с невалидным хешем")
     def test_create_order_with_invalid_hash_returns_500(self):
-        payload = {"ingredients": ["61c0c5a71d1f82001bdaaa6z"]}
+        payload = {"ingredients": [INVALID_INGREDIENT_HASH]}
 
         response = OrderApi.create_order(payload)
 

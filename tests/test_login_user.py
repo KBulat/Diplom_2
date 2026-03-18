@@ -1,6 +1,6 @@
 import allure
 from helpers.api import UserApi
-from helpers.data import ErrorMessages
+from helpers.data import ErrorMessages, Credentials
 
 @allure.suite("Логин пользователя")
 class TestLoginUser:
@@ -20,8 +20,8 @@ class TestLoginUser:
     @allure.title("Логин с неверными данными")
     def test_login_with_wrong_credentials_returns_401(self):
         payload = {
-            "email": "wrong_email@gmail.com",
-            "password": "WrongPassword123"
+            "email": Credentials.INVALID_EMAIL,
+            "password": Credentials.INVALID_PASSWORD
         }
 
         response = UserApi.login_user(payload)
